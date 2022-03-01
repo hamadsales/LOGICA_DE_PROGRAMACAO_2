@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pintando</title>
+</head>
+<body>
+    <canvas width="600"  height="400"></canvas>
+
+</body>
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0, 0, 600, 400);
+function desenhaCirculo(evento) {
+
+    //evento.pageX ou evento.pageY pega as coordenadas x e y
+    //tela.offsertLeft é a margem dos lados da tela
+    //tela.offsertTop são as margens inferiores e superiores da tela
+    //Subtraimos x e y das suas margens para que somente o canva entre na área de evento
+    var x = evento.pageX - tela.offsetLeft;
+    var y = evento.pageY - tela.offsetTop;
+
+    pincel.fillStyle="blue";
+    pincel.beginPath();
+    //10 é o tamanho do raio
+    //0 é o ângulo inicial
+    pincel.arc(x, y, 10, 0, 2*3.14);
+    pincel.fill();
+
+    console.log("posição do clique : " + x + ", " + y);
+}
+
+// não esqueça de mudar aqui
+tela.onclick = desenhaCirculo;
+</script>
+</html>
